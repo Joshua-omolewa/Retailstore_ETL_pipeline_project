@@ -9,7 +9,7 @@
 ![project architecture](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Data%20Architecture.jpg)
 
 ## 1. Business Scenario
-A Retail Store requires a Data engineer to build a data pipeline that take raw data from organization database and transforms the data to satisfy business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions.
+A Retail Store requires a Data engineer to build a data pipeline that take raw data from organization database and transforms the data to satisfy the business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions.
 
 ## 2. Business Requirements
 The data engineer is require to produce a weekly table that meets the following requirements:
@@ -34,7 +34,7 @@ The table will be grouped by each week, each store, each product to calculate th
 In order to build the architecture the following are required:
 
 * Programnming languages : Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster. 
-* Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake to start the project. The data from snowflake is automatically move at 12:00am MST everyday to the staging area i.e Input S3 bucket. To see how the data was loaded into Snowflake database [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing). To see how the data was automatically move to the s3 bucket at 12:00am MST [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing).
+* Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake to start this project to simulate a real transactional database. The data from snowflake is automatically move at 12:00am MST everyday to the staging area i.e Input S3 bucket. To see how the data was loaded into Snowflake database [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing). To see how the data was automatically move to the s3 bucket at 12:00am MST [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing).
 * Input S3 bucket: The first S3 bucket is created as a staging area for the raw data coming from the Snowflake.
 * Lambda : A lambda function is required to send the raw data in the S3 staging area to airflow.The lambda function triggers airflow workflows automatically & the lambda function is automatically triggered at 12:05am MST by CloudWatch and if the data is not available to be sent an email is sent to notify the data engineer that the data from the transactional database has not been received.
 * Cloudwatch: Cloudwatch is used to set a rule that automatically triggers the Lambda function at 12:05am
