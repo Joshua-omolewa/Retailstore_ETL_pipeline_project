@@ -33,23 +33,21 @@ The table will be grouped by each week, each store, each product to calculate th
 ## 3. PRE-REQUISITE
 In order to build the architecture the following are required:
 
-* Programnming languages : Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data using the Amazon EMR cluster 
+* Programnming languages : Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster 
 * Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake to start the project. The data from snowflake is automatically move at 12:00am MST every the staging area in S3 bucket. In order to see how the data was loaded into Snowflake database [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing)
-* Lamda : A lamda function is required to send the raw data in the satging area to airflow. The lamda function is trigger at 12:05am MST using CloudWatch
+* Input S3 bucket: The first S3 bucket is created as a staging area for the raw data coming from the Snowflake
+* Lambda : A lambda function is required to send the raw data in the S3 staging area to airflow.The lambda function triggers airflow workflows automatically & the lambda function is automatically triggered at 12:05am MST by CloudWatch and if the data is not available to be sent an email is sent to notify the data engineer that the data from the transactional database has not been received.
+* Cloudwatch: Cloudwatch is used to set a rule that automatically triggers the Lambda function at 12:05am
+* Aiflow: Airflow runs in a docker container within an EC2 instance  & it   is used to orchestrate & schedule the the movement of data from S3 to the EMR cluster for transformation. Airflow also monitor the transfromation step in the EMRcluster and displays if the step executed successfully in DAG Tree view.
+* EMR : The EMR cluster has hadoop & spark installed and will transform the raw data recievced from airflow to meet the business requirement and send the transform data to the output S3  bucket. 
+* Glue: Glue is used automatically to crawl the output S3 bucket to create tables in the Glue catalog that can be queried using Athena by the data analyst
+* Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table and other table to answer business questions
+* Superset: Superset runs in a docker container in an EC2 instance that can be used to create Data Visualization  & dashboards  by the Data Analyst
 
 
-## 4. Specification Detail
-The data required is gotten from API by querying jobs from the first 50 pages  https://www.themuse.com/api/public/jobs?page=50
 
 
-
-
-## 6. Project Diagram
- The diagram shows the folder structure for the project and the how the shell scripts create virtual enviroment containing dependecies contained in the requirements.txt file. The run.sh shell script activates the virtual enviroment and run the run.py python script which connect to the API, transform the dat using pandas and then upload the transform job.csv file to S3 bucket for the data analyst
- 
-![project image](https://github.com/Joshua-omolewa/Scraping_API_csvdata_to_S3_project/blob/main/img/Python_project.png)
-
-# 7. STEPS USED TO COMPLETE THIS PROJECT
+# 4. STEPS USED TO COMPLETE THIS PROJECT
 * Create Amazon AWS account and login into AWS console, create Amazon Elastic Compute Cloud (EC2) instance (Ubuntu) and S3 bucket with directory to store transformed csv file. Ensuring EC2 instance and S3 are in created in the same region. Ensure EC2 is attached to default amazon VPC and default subnet so EC2 can have access to internet through default Internet gateway
 <img src="https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/img/final%20EC2%20S3.jpg"  width="100%" height="100%">
 
