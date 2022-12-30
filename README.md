@@ -1,14 +1,34 @@
-# end-2-end_data_pipeline_project-
-
-# PROJECT: Data Pipeline that collects job data from API and transform data into csv file  based on business requirements and upload transformed data to Amazon S3 bucket
+# Retail Store End-To-End Data-pipeline Project
 
 # Author: 👤 **Joshua Omolewa**
 
+# PROJECT OVERVIEW : Building a Data Pipeline that collects  data from transactional database (OLTP) on Snowflakes  and transforms the collected data to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization
+
+## 1. Project Architecture
+
+![project architecture](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Data%20Architecture.jpg)
+
 ## 1. Business Scenario
-Data engineer is required to build a data pipeline on amazon EC2 that transform job data from API to a job.csv file for data analysis by data analyst and store transformed data in S3 and also generate log files for error tracking . API for job data  https://www.themuse.com/developers/api/v2
+A Retail Store requires a Data engineer to build a data pipeline that take raw data from organization database and transforms the data to satisfy business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions.
 
 ## 2. Business Requirements
-Download the data from API. Transformed data should include publication date, job name, job type, job location (i.e city and country) &company name. Store data in S3 for use by data analyst
+The data engineer is require to produce a weekly table that meets the following requirements:
+
+The table will be grouped by each week, each store, each product to calculate the following metrics:
+
+* total sales quantity of a product : Sum(sales_qty)
+* total sales amount of a product : Sum(sales_amt)
+* average sales Price: Sum(sales_amt)/Sum(sales_qty)
+* stock level by then end of the week : stock_on_hand_qty by the end of the week (only the stock level at the end day of the week)
+* store on Order level by then end of the week: ordered_stock_qty by the end of the week (only the ordered stock quantity at the end day of the week)
+* total cost of the week: Sum(cost_amt)
+* the percentage of Store In-Stock: (how many times of out_of_stock in a week) / days of a week (7 days)
+* total Low Stock Impact: sum (out_of+stock_flg + Low_Stock_flg)
+* potential Low Stock Impact: if Low_Stock_Flg =TRUE then SUM(sales_amt - stock_on_hand_amt)
+* no Stock Impact: if out_of_stock_flg=true, then sum(sales_amt)
+* low Stock Instances: Calculate how many times of Low_Stock_Flg in a week
+* no Stock Instances: Calculate then how many times of out_of_Stock_Flg in a week
+* how many weeks the on hand stock can supply: (stock_on_hand_qty at the end of the week) / sum(sales_qty) 
 
 ## 3. Deliverable
 shell scripts, python script and job.csv to S3.
@@ -22,9 +42,7 @@ job.csv: The final transformed data file based on business requirement.
 ## 4. Specification Detail
 The data required is gotten from API by querying jobs from the first 50 pages  https://www.themuse.com/api/public/jobs?page=50
 
-## 5. Project Architecture
 
-![project architecture](https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/img/project%20architecture.jpg)
 
 
 ## 6. Project Diagram
