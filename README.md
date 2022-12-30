@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-# PROJECT OVERVIEW : Building a Data Pipeline that collects  data from transactional database (OLTP) on Snowflakes  and transforms the collected data to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization
+## PROJECT OVERVIEW : Building a Data Pipeline that collects  data from transactional database (OLTP) on Snowflakes  and transforms the collected data to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization
 
 ## 1. Project Architecture
 
