@@ -33,18 +33,17 @@ The table will be grouped by each week, each store, each product to calculate th
 ## 3. PRE-REQUISITE
 In order to build the architecture the following are required:
 
-* Programnming languages : Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster 
-* Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake to start the project. The data from snowflake is automatically move at 12:00am MST every the staging area in S3 bucket. In order to see how the data was loaded into Snowflake database [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing)
-* Input S3 bucket: The first S3 bucket is created as a staging area for the raw data coming from the Snowflake
+* Programnming languages : Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster. 
+* Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake to start the project. The data from snowflake is automatically move at 12:00am MST everyday to the staging area i.e Input S3 bucket. To see how the data was loaded into Snowflake database [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing). To see how the data was automatically move to the s3 bucket at 12:00am MST [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing).
+* Input S3 bucket: The first S3 bucket is created as a staging area for the raw data coming from the Snowflake.
 * Lambda : A lambda function is required to send the raw data in the S3 staging area to airflow.The lambda function triggers airflow workflows automatically & the lambda function is automatically triggered at 12:05am MST by CloudWatch and if the data is not available to be sent an email is sent to notify the data engineer that the data from the transactional database has not been received.
 * Cloudwatch: Cloudwatch is used to set a rule that automatically triggers the Lambda function at 12:05am
 * Aiflow: Airflow runs in a docker container within an EC2 instance  & it   is used to orchestrate & schedule the the movement of data from S3 to the EMR cluster for transformation. Airflow also monitor the transfromation step in the EMRcluster and displays if the step executed successfully in DAG Tree view.
-* EMR : The EMR cluster has hadoop & spark installed and will transform the raw data received from airflow to meet the business requirement  and send the transform data to the output S3  bucket (ELT process). 
-* Glue: Glue is used automatically to crawl the output S3 bucket to create tables in the Glue catalog that can be queried using Athena by the data analyst
-* Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table and other table to answer business questions
+* EMR : The EMR cluster has hadoop & spark installed and will transform the raw data received from airflow to meet the business requirement  and send the transform data in parquet format to the output S3  bucket (ETL process). 
+* Output S3 bucket: The transform data from EMR Cluster is stored in the Output S3 bucket.
+* Glue: Glue is used  to automatically crawl the output S3 bucket to create tables in the Glue catalog that can be queried using Athena by the data analyst
+* Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table using SQL in order to answer business questions
 * Superset: Superset runs in a docker container in an EC2 instance that can be used to create Data Visualization  & dashboards  by the Data Analyst
-
-
 
 
 # 4. STEPS USED TO COMPLETE THIS PROJECT
