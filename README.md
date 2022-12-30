@@ -31,10 +31,11 @@ The table will be grouped by each week, each store, each product to calculate th
 * how many weeks the on hand stock can supply: (stock_on_hand_qty at the end of the week) / sum(sales_qty) 
 
 ## 3. PRE-REQUISITE
-In order to build the architecture the following are required 
+In order to build the architecture the following are required:
 
-* Programnming langagues use: Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for the EMR cluster
-* Databases: The transactional database is Snowflake and the  
+* Programnming languages : Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data using the Amazon EMR cluster 
+* Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake to start the project. The data from snowflake is automatically move at 12:00am MST every the staging area in S3 bucket. In order to see how the data was loaded into Snowflake database [click here](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing)
+* Lamda : A lamda function is required to send the raw data in the satging area to airflow. The lamda function is trigger at 12:05am MST using CloudWatch
 
 
 ## 4. Specification Detail
