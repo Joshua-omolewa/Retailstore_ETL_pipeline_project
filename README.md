@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-## PROJECT OVERVIEW : Building a Data Pipeline that collects  data from transactional database (OLTP) on Snowflakes  and transforms the collected data to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization
+## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) on Snowflakes  and transforms the collected data to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization
 
 ## 1. Project Architecture
 
@@ -30,14 +30,12 @@ The table will be grouped by each week, each store, each product to calculate th
 * no Stock Instances: Calculate then how many times of out_of_Stock_Flg in a week
 * how many weeks the on hand stock can supply: (stock_on_hand_qty at the end of the week) / sum(sales_qty) 
 
-## 3. Deliverable
-shell scripts, python script and job.csv to S3.
+## 3. PRE-REQUISITE
+In order to build the architecture the following are required 
 
-Shell script: The shell script will control every operation, setting virtual environment, log setting, python script running.
+* Programnming langagues use: Python, SQL. These langauge are used to build the pyspark script that utilizes SparkSQL API for the EMR cluster
+* Databases: The transactional database is Snowflake and the  
 
-Python script: The Python script is used to transform the data and upload data to s3 bucket.
-
-job.csv: The final transformed data file based on business requirement.
 
 ## 4. Specification Detail
 The data required is gotten from API by querying jobs from the first 50 pages  https://www.themuse.com/api/public/jobs?page=50
