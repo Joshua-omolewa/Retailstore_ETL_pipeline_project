@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) on Snowflake  and transforms the collected data to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization
+## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) on Snowflake  and transforms the collected data (ETL process) to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization
 
 ## 1. Project Architecture
 
@@ -39,7 +39,7 @@ In order to build the architecture the following are required:
 * Lambda : A lambda function is required to send the raw data in the S3 staging area to airflow.The lambda function triggers airflow workflows automatically & the lambda function is automatically triggered at 12:05am MST by CloudWatch and if the data is not available to be sent an email is sent to notify the data engineer that the data from the transactional database has not been received.
 * Cloudwatch: Cloudwatch is used to set a rule that automatically triggers the Lambda function at 12:05am
 * Aiflow: Airflow runs in a docker container within an EC2 instance  & it   is used to orchestrate & schedule the the movement of data from S3 to the EMR cluster for transformation. Airflow also monitor the transfromation step in the EMRcluster and displays if the step executed successfully in DAG Tree view.
-* EMR : The EMR cluster has hadoop & spark installed and will transform the raw data recievced from airflow to meet the business requirement and send the transform data to the output S3  bucket. 
+* EMR : The EMR cluster has hadoop & spark installed and will transform the raw data received from airflow to meet the business requirement  and send the transform data to the output S3  bucket (ELT process). 
 * Glue: Glue is used automatically to crawl the output S3 bucket to create tables in the Glue catalog that can be queried using Athena by the data analyst
 * Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table and other table to answer business questions
 * Superset: Superset runs in a docker container in an EC2 instance that can be used to create Data Visualization  & dashboards  by the Data Analyst
