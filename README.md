@@ -9,7 +9,7 @@
 ![project architecture](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Data%20Architecture.jpg)
 
 ## 1. Business Scenario
-A Retail Store requires a Data engineer to build a data pipeline that take raw data from organization database and transforms the data to satisfy the business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions.
+A Retail Store requires a Data engineer to build a data pipeline (ETL) that take raw data from organization database and transforms the data to satisfy the business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions.
 
 ## 2. Business Requirements
 The data engineer is require to produce a weekly table that meets the following requirements:
