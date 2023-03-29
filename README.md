@@ -14,7 +14,7 @@ A Retail Store requires a Data engineer to build a data pipeline (ETL) that take
 ## 2. Business Requirements
 The data engineer is require to produce a weekly table that meets the following requirements:
 
-The table will be grouped by each week, each store, each product to calculate the following metrics: (I transalated the business requirement to min SQL statement I will need during transfromation process using Spark)
+The table will be grouped by each week, each store, each product to calculate the following metrics: (**I transalated the business requirement to mini SQL statement I will need during transformation process using Spark**)
 
 * total sales quantity of a product : **Sum(sales_qty)**
 * total sales amount of a product : **Sum(sales_amt)**
