@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) on Snowflake  and transforms the collected data (ETL process) to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization using superset
+## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) on Snowflake  and transforms the collected data (ETL process) using spark to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization using superset
 
 ## 1. Project Architecture
 
