@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) on Snowflake  and transforms the collected data (ETL process) using spark to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization using superset
+## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) in Snowflake  and transforms the collected data (ETL process) using spark to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization using superset
 
 ## 1. Project Architecture
 
@@ -12,7 +12,7 @@
 A Retail Store requires a Data engineer to build a data pipeline (ETL) that take raw data from organization database and transforms the data to satisfy the business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions.
 
 ## 2. Business Requirements
-The data engineer is require to produce a weekly table that meets the following requirements:
+The data engineer is require to produce a weekly table that meets the following requirements for Data Analyst can perform analytics:
 
 The table will be grouped by each week, each store, each product to calculate the following metrics: (**I transalated the business requirement to mini SQL statement I will need during transformation process using Spark**)
 
