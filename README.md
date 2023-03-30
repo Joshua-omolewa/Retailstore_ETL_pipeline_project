@@ -1,4 +1,4 @@
-# Retail Store End-To-End Data-pipeline (ETL) Project
+# Retail Store End-To-End Batch Data-pipeline (ETL) Project
 
 # Author: 👤 **Joshua Omolewa**
 
