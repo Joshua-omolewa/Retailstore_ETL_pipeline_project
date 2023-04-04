@@ -87,8 +87,6 @@ END;
 $$
 ;
 ```
-
-
   * sql code used to create task and activate task
 
  ```
