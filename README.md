@@ -30,12 +30,13 @@ The table will be grouped by each week, each store, each product to calculate th
 * no Stock Instances: **Calculate then how many times of out_of_Stock_Flg in a week**
 * how many weeks the on hand stock can supply: **(stock_on_hand_qty at the end of the week) / sum(sales_qty)**
 
-## 3. PRE-REQUISITE
-In order to build the architecture the following are required:
+## 3. STEPS USED TO COMPLETE THE PROJECT 
 
-* Programming languages : Python, SQL langauges are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster. 
+* Load the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into snowflake in order to setup the Snowfalke OLTP system 
+<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowflake%20load%20data%20into%20database.jpg"  width="100%" height="100%">
 * Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake tables from S3 bucket (see image below for snowflake table). The data from snowflake is automatically move at 12:00am MST everyday to the staging area using store procedure i.e Input S3 bucket.
 * Input S3 bucket: The first S3 bucket is created as a staging area for the raw data coming from the Snowflake. The raw data is extracted from the snowflake database using store procedure and chron job in snowflake which ensures data is moved from OLTP system at 12:00am to the s3 bucket everyday. Sample raw data from in the s3 bucket is shown in the image below. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/raw%20data%20extracted%20to%20s3.jpg"  width="100%" height="100%">
+*Programming languages : Python, SQL langauges are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster. 
 * Lambda : A lambda function is created and  required to send the raw data in the S3 staging area by triggering airflow.The lambda function triggers airflow workflows automatically & the lambda function is automatically triggered at 12:05am MST (this time is used as the raw data come into input s3 bucket by 12:00am MST everyday) by CloudWatch and if the data is not available to be sent an email is sent to notify the data engineer that the data from the transactional database has not been received.<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/lambda%20function%20to%20trigger%20airflow%20and%20send%20email.jpg"  width="100%" height="100%">
 * Cloudwatch: Cloudwatch is used to set a rule that automatically triggers the Lambda function at 12:05am . <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/cloudwatch%20rule.jpg"  width="100%" height="100%">
 * Aiflow: Airflow runs in a docker container within an EC2 instance  & it   is used to orchestrate & schedule the the movement of data from S3 to the EMR cluster for transformation. Airflow also monitor the spark job transfromation step in the EMRcluster and displays if the step executed successfully in DAG Graph view. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Airflow.jpg"  width="100%" height="100%">
@@ -47,8 +48,11 @@ In order to build the architecture the following are required:
 
 
 # 4. STEPS USED TO COMPLETE THIS PROJECT
-* Create Amazon AWS account and login into AWS console, create Amazon Elastic Compute Cloud (EC2) instance (Ubuntu) and S3 bucket with directory to store transformed csv file. Ensuring EC2 instance and S3 are in created in the same region. Ensure EC2 is attached to default amazon VPC and default subnet so EC2 can have access to internet through default Internet gateway
-<img src="https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/img/final%20EC2%20S3.jpg"  width="100%" height="100%">
+* Load the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into snowflake in order to setup the Snowfalke OLTP system 
+<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowflake%20load%20data%20into%20database.jpg"  width="100%" height="100%">
+
+* Create a store procedure to move the raw data from OLTP into snowflake in order to setup the Snowfalke OLTP system 
+<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowflake%20load%20data%20into%20database.jpg"  width="100%" height="100%">
 
 * SSH into EC2 instance (ensuring my ip is allowed to access instance through the security group) via VSCODE (using remote explorer) and create the project structure containing shell scripts (init.sh, run.sh), python scripts( run.py), .env file(to store access keys to my AWS console), .config.toml file (containing config files to access specific S3 bucket directory and to store API url), .gitignore to ignore specific files (.env and virtual environment folder created by runing init.sh),requirments.txt (containing all library dependencies required for the project)
 <img src="https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/img/ssh.jpg"  width="100%" height="100%">
