@@ -35,7 +35,7 @@ The table will be grouped by each week, each store, each product to calculate th
 * Creating a database in Snowflake and then loading the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into Snowflake in order to setup the Snowflake OLTP system 
 <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowfalke%20final.jpg"  width="100%" height="100%">
 
-* Wrote an SQL [stored procedure](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) that would intiate the extraction of the raw data into the staging s3 bucket (i.e. input s3 bucket) every day at 12:00 MST which is the off peak period for the retail store. Snowflakes allows creation of task that utilizes chron to run any query. I create a a task that run the store procedure to load the data for each day to the input s3 bucket at  12:00 am MST everyday
+* Wrote an SQL [stored procedure](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/snowflake_loading_data_to_s3%20-final.sql) that would intiate the extraction of the raw data into the staging s3 bucket (i.e. input s3 bucket) every day at 12:00 MST which is the off peak period for the retail store. Snowflakes allows creation of task that utilizes chron to run any query. I create a a task that run the store procedure to load the data for each day to the input s3 bucket at  12:00 am MST everyday
   * store procedure sql code
 ```
 --Step 1. Create a procedure to load data from Snowflake table to S3 using SQL format. Here, replace <your s3 stage name> with your stage name.
@@ -119,7 +119,7 @@ ALTER TASK load_data_to_s3 resume;
 * Load the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into snowflake in order to setup the Snowfalke OLTP system 
 <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowflake%20load%20data%20into%20database.jpg"  width="100%" height="100%">
 
-* Create a store procedure to move the raw data from OLTP into snowflake in order to setup the Snowfalke OLTP system 
+* Create a stored procedure to move the raw data from OLTP into snowflake in order to setup the Snowfalke OLTP system 
 <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowflake%20load%20data%20into%20database.jpg"  width="100%" height="100%">
 
 * SSH into EC2 instance (ensuring my ip is allowed to access instance through the security group) via VSCODE (using remote explorer) and create the project structure containing shell scripts (init.sh, run.sh), python scripts( run.py), .env file(to store access keys to my AWS console), .config.toml file (containing config files to access specific S3 bucket directory and to store API url), .gitignore to ignore specific files (.env and virtual environment folder created by runing init.sh),requirments.txt (containing all library dependencies required for the project)
