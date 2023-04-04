@@ -32,7 +32,7 @@ The table will be grouped by each week, each store, each product to calculate th
 
 ## 3. STEPS USED TO COMPLETE THE PROJECT 
 
-### Please note: Python, SQL langauges are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster. 
+### Please note: Python language & SQL are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster. 
 
 * Created a database in Snowflake and then I loaded the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into Snowflake database in order to setup the Snowflake OLTP system 
 <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowfalke%20final.jpg"  width="100%" height="100%">
