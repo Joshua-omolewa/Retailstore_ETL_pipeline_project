@@ -32,9 +32,20 @@ The table will be grouped by each week, each store, each product to calculate th
 
 ## 3. STEPS USED TO COMPLETE THE PROJECT 
 
-* Load the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into snowflake in order to setup the Snowfalke OLTP system 
+* Creating a database in Snowflake and Loading the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into Snowflake in order to setup the Snowflake OLTP system 
 <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowfalke%20final.jpg"  width="100%" height="100%">
+* Wrote an SQL stored procedure [stored procedure](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) that would intiate the extraction of the raw data into the staging s3 bucket (i.e. input s3 bucket) every day at 12:00 MST which is the off peak period for the retail store. Snowflakes allows creation of task that utilizes chron to run any query. I create a a task that run the store procedure 12:00 am MST 
+  * sql code used to create task and activate task
+  `--Step 2. Create a task to run the job. Here we use cron to set job at 12am MST everyday. 
+CREATE OR REPLACE TASK load_data_to_s3
+WAREHOUSE = PROJECT 
+SCHEDULE = 'USING CRON 0 12 * * * America/Edmonton'
+AS
+CALL COPY_INTO_S3();
 
+
+--Step 3. Activate the task
+ALTER TASK load_data_to_s3 resume;`
 * Database: The transactional database is Snowflake and the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) is loaded into snowflake tables from S3 bucket (see image below for snowflake table). The data from snowflake is automatically move at 12:00am MST everyday to the staging area using store procedure i.e Input S3 bucket.
 * Input S3 bucket: The first S3 bucket is created as a staging area for the raw data coming from the Snowflake. The raw data is extracted from the snowflake database using store procedure and chron job in snowflake which ensures data is moved from OLTP system at 12:00am to the s3 bucket everyday. Sample raw data from in the s3 bucket is shown in the image below. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/raw%20data%20extracted%20to%20s3.jpg"  width="100%" height="100%">
 *Programming languages : Python, SQL langauges are used to build the pyspark script that utilizes SparkSQL API for transforming the raw data to meet the business requirement using the Amazon EMR cluster. 
