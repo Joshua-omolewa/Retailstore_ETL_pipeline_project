@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-## PROJECT OVERVIEW : Building a Data Pipeline using AWS services that collects  data from transactional database (OLTP) in Snowflake  and transforms the collected data (ETL process) using spark to meet  business requirements and enables  Data Analyst to run SQL query & create Data Visualization using superset
+## PROJECT OVERVIEW : Building a Data Pipeline for  a Retail store using AWS services that collects  data from its transactional database (OLTP) in Snowflake  and transforms the collected data (ETL process) using spark to meet  business requirements and also enables  Data Analyst/BI professionals to run SQL query & create Data Visualization using Superset
 
 ## 1. Project Architecture
 
@@ -41,9 +41,9 @@ In order to build the architecture the following are required:
 * Aiflow: Airflow runs in a docker container within an EC2 instance  & it   is used to orchestrate & schedule the the movement of data from S3 to the EMR cluster for transformation. Airflow also monitor the spark job transfromation step in the EMRcluster and displays if the step executed successfully in DAG Graph view. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Airflow.jpg"  width="100%" height="100%">
 * EMR : The EMR cluster has hadoop & spark installed and will transform the raw data configuration received from airflow using spark streaming to meet the business requirement  and send the transform data in parquet format to the output S3  bucket (ETL process). <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/emr%20runing%20spark%20submit%20job.jpg"  width="100%" height="100%">
 * Output S3 bucket: Created an S3 bucket in which the transformed data from EMR Cluster is stored.<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/tranformed%20s3%20bucket.jpg"  width="100%" height="100%">
-* Glue: Glue is used  to automatically crawl the output S3 bucket to create tables in the Glue catalog that can be queried using Athena by the data analyst
-* Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table using SQL in order to answer business questions
-* Superset: Superset runs in a docker container in an EC2 instance that can be used to create Data Visualization  & dashboards  by the Data Analyst
+* Glue: Glue is used  to automatically crawl the output S3 bucket to create tables in the Glue catalog that can be queried using Athena by the data analyst .<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/AWS%20glue%20crawler%20final.jpg"  width="100%" height="100%">
+* Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table using SQL in order to answer business questions. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Anthena%20final.jpg"  width="100%" height="100%">
+* Superset: Superset runs in a docker container in an EC2 instance that can be used to create Data Visualization  & dashboards  by the Data Analyst. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Anthena%20final.jpg"  width="100%" height="100%">
 
 
 # 4. STEPS USED TO COMPLETE THIS PROJECT
@@ -60,7 +60,7 @@ In order to build the architecture the following are required:
 <img src="https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/img/project%20complete.jpg"  width="100%" height="100%">
 
 * Checking Amazon S3 bucket to ensure the job.csv file has been successfuly uploaded and viewing a copy in Github repository
-<img src="https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/img/s3%20succesful%20upload.jpg"  width="100%" height="100%">
+<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Superset%20finals.jpg"  width="100%" height="100%">
 
 
 
