@@ -35,7 +35,7 @@ The table will be grouped by each week, each store, each product to calculate th
 * Creating a database in Snowflake and then loading the [raw data](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) into Snowflake in order to setup the Snowflake OLTP system 
 <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/snowfalke%20final.jpg"  width="100%" height="100%">
 
-* Wrote an SQL stored procedure [stored procedure](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) that would intiate the extraction of the raw data into the staging s3 bucket (i.e. input s3 bucket) every day at 12:00 MST which is the off peak period for the retail store. Snowflakes allows creation of task that utilizes chron to run any query. I create a a task that run the store procedure 12:00 am MST 
+* Wrote an SQL [stored procedure](https://drive.google.com/drive/folders/1TL3mtDTW4Uv59cyp3C9COgVgGMaBEImB?usp=sharing) that would intiate the extraction of the raw data into the staging s3 bucket (i.e. input s3 bucket) every day at 12:00 MST which is the off peak period for the retail store. Snowflakes allows creation of task that utilizes chron to run any query. I create a a task that run the store procedure to load the data for each day to the input s3 bucket at  12:00 am MST everyday
   * store procedure sql code
 ```
 --Step 1. Create a procedure to load data from Snowflake table to S3 using SQL format. Here, replace <your s3 stage name> with your stage name.
@@ -87,6 +87,7 @@ END;
 $$
 ;
 ```
+*
   * sql code used to create task and activate task
 
  ```
