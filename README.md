@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-## PROJECT OVERVIEW : Building a Data Pipeline for  a Retail store using AWS services that collects  data from its transactional database (OLTP) in Snowflake  and transforms the collected data (ETL process) using spark to meet  business requirements and also enables  Data Analyst to run SQL query & create Data Visualization using Superset
+## PROJECT OVERVIEW : Building a Data Pipeline for  a Retail store using AWS services that collects  data from its transactional database (OLTP) in Snowflake  and transforms the raw data (ETL process) using Apache spark to meet  business requirements and also enables  Data Analyst to run SQL query & create Data Visualization using Superset. Airflow is used to orchestreate the batch ETL pipeline.
 
 ## 1. Project Architecture
 
@@ -111,33 +111,18 @@ ALTER TASK load_data_to_s3 resume;
 
 * Created the lambda function that cloudwatch triggers at 12:05am MST that scans the input s3 bucket (staging area) for yestedays raw daw and if found the lamda function triggers airflow workflow automatically to start the batch processing. Also if the data is not yet available an email is sent to notify the data engineer that the data from the transactional database has not been received.<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/lambda%20function%20to%20trigger%20airflow%20and%20send%20email.jpg"  width="100%" height="100%">
 
-* Created docker containers runing Airflow using docker compost  within an EC2 instance. Ariflow is used to orchestrate & schedule the the movement of data from S3 to the Amazon EMR cluster for transformation. Airflow submits the spark job to the EMR clust and also monitor the spark job transfromation step in the EMR cluster and displays if the EMR steps executed successfully in DAG Graph view. The airflow python code for the airflow dags can be found [here](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/airflow_dag.py)  <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Airflow.jpg"  width="100%" height="100%">
+* Created docker containers runing Airflow using docker compost  within an EC2 (Amazon Elastic Compute Cloud) instance. Ariflow is used to orchestrate & schedule the the movement of data from S3 to the Amazon EMR cluster for transformation. Airflow submits the spark job to the EMR clust and also monitor the spark job transfromation step in the EMR cluster and displays if the EMR steps executed successfully in DAG Graph view. The airflow python code for the airflow dags can be found [here](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/airflow_dag.py)  <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Airflow.jpg"  width="100%" height="100%">
 
 * Created an Amazon EMR cluster that has hadoop & spark frameworks installed. The EMR will transform the raw data utitizing pyspark based on the spark submit configuration received from airflow using  to meet the business requirement  and load the transform data in parquet format to the output S3  bucket (ETL process). The pyspark scripts for the project can be found  [here](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/tree/main/spark_files)  <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/emr%20runing%20spark%20submit%20job.jpg"  width="100%" height="100%">
 
 * Created an Output S3 bucket which the transformed data from EMR Cluster is stored.<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/tranformed%20s3%20bucket.jpg"  width="100%" height="100%">
 
 * Utilized Glue to automatically crawl the output S3 bucket to create tables in the Glue catalog/database that can be queried using Athena by the data analyst .<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/AWS%20glue%20crawler%20final.jpg"  width="100%" height="100%">
-* 
+
 * Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table using SQL in order to answer business questions. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Anthena%20final.jpg"  width="100%" height="100%">
 
 
 * Finally I created a docker container that runs superset in an EC2 instance. Superset can be used to create Data Visualization  & dashboards  by the Data Analyst. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Superset%20finals.jpg"  width="100%" height="100%">
-
-
-## PROJECT FILES
-
-* [init.sh SCRIPT](https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/init.sh)
-
-* [run.sh SCRIPT](https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/run.sh)
-
-* [run.py SCRIPT](https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/run.py)
-
-* [requirements.txt FILE](https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/requirements.txt)
-
-* [job.csv DATA FILE](https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/blob/main/job.csv)
-
-* [LOG FOLDER](https://github.com/Joshua-omolewa/AWS_API_csvdata_to_S3_project/tree/main/log)
 
 # Follow Me On
   
