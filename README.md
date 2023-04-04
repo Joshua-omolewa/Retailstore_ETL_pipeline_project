@@ -119,7 +119,7 @@ ALTER TASK load_data_to_s3 resume;
 
 * Utilized Glue to automatically crawl the output S3 bucket to create tables in the Glue catalog/database that can be queried using Athena by the data analyst .<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/AWS%20glue%20crawler%20final.jpg"  width="100%" height="100%">
 
-* Athena: Athena is used to Query the tables created using Glue. The Data anlyst can interact with the weekly table using SQL in order to answer business questions. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Anthena%20final.jpg"  width="100%" height="100%">
+* Made use of athena to query the tables created using Glue. The Data anlyst can interact with the weekly fact table using SQL in order to answer business questions. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Anthena%20final.jpg"  width="100%" height="100%">
 
 
 * Finally I created a docker container that runs superset in an EC2 instance. Superset can be used to create Data Visualization  & dashboards  by the Data Analyst. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Superset%20finals.jpg"  width="100%" height="100%">
