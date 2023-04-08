@@ -2,7 +2,7 @@
 
 # Author: 👤 **Joshua Omolewa**
 
-## PROJECT OVERVIEW : Built a Data Pipeline for  a Retail store using AWS services that collects  data from its transactional database (OLTP) in Snowflake  and transforms the raw data (ETL process) using Apache spark to meet  business requirements and also enables  Data Analyst to run SQL query & create Data Visualization using Superset. Airflow is used to orchestrate the batch ETL pipeline.
+## PROJECT OVERVIEW : I designed and developed a data pipeline for a retail store using AWS services. The pipeline collects data from the store's transactional database (OLTP) in Snowflake and transforms the raw data using Apache Spark to meet the business requirements. The pipeline also enables Data Analysts to run SQL queries and create data visualizations using Superset. The batch ETL pipeline is orchestrated using Airflow, an open-source platform to programmatically author, schedule, and monitor workflows."
 
 ##  Project Architecture
 
