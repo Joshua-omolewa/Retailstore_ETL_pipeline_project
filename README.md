@@ -104,7 +104,7 @@ CALL COPY_INTO_S3();
 ALTER TASK load_data_to_s3 resume;
 ```
 
-* Created a Input S3 (Amazon Simple Storage Service) bucket as a staging area for the raw data coming from the Snowflake. The raw data is extracted from the snowflake database using store procedure. Sample raw data from in the s3 bucket is shown in the image below. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/raw%20data%20extracted%20to%20s3.jpg"  width="100%" height="100%">
+* Created an Input S3 (Amazon Simple Storage Service) bucket as a staging area for the raw data coming from the Snowflake. The raw data is extracted from the snowflake database using store procedure. Sample raw data from in the s3 bucket is shown in the image below. <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/raw%20data%20extracted%20to%20s3.jpg"  width="100%" height="100%">
 
 
 * Utilized  Cloudwatch to pre-set a rule that automatically triggers the Lambda function at 12:05am MST as raw data extracted daily from snowflake  is expected in the s3 staging area by 12:00am MST . <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/cloudwatch%20rule.jpg"  width="100%" height="100%">
@@ -113,7 +113,7 @@ ALTER TASK load_data_to_s3 resume;
 
 * Created docker containers runing Airflow using docker compost  within an EC2 (Amazon Elastic Compute Cloud) instance. Ariflow is used to orchestrate & schedule the the movement of data from S3 to the Amazon EMR cluster for transformation. Airflow submits the spark job to the EMR clust and also monitor the spark job transformation step in the EMR cluster and displays if the EMR steps executed successfully in DAG Graph view. The airflow python code for the airflow dags can be found **[here](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/airflow_dag.py)**  <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Airflow.jpg"  width="100%" height="100%">
 
-* Created an Amazon EMR cluster that has hadoop & spark frameworks installed. The EMR will transform the raw data utitizing pyspark based on the spark submit configuration received from airflow using  to meet the business requirement  and load the transform data in parquet format to the output S3  bucket (ETL process). The pyspark scripts for the project can be found  **[here](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/tree/main/spark_files)**  <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/emr%20runing%20spark%20submit%20job.jpg"  width="100%" height="100%">
+* Created an Amazon EMR cluster that has hadoop & spark frameworks pre-installed. The EMR will transform the raw data to meet the business requirement using pyspark code & spark submit configuration received from airflow and the load the transform data in parquet format to the output S3  bucket (ETL process). The pyspark scripts for the project can be found  **[here](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/tree/main/spark_files)**  <img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/emr%20runing%20spark%20submit%20job.jpg"  width="100%" height="100%">
 
 * Created an Output S3 bucket which the transformed data from EMR Cluster is stored.<img src="https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/tranformed%20s3%20bucket.jpg"  width="100%" height="100%">
 
