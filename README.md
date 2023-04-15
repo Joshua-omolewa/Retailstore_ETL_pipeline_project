@@ -49,7 +49,7 @@ LANGUAGE SQL
 AS
 $$
 BEGIN 
--- First step is to create a dat2 varaible that stores  current date function on snowflake in which has YYYY-MM-DD format by default
+-- First step is to create a dat2 varaible that stores  current date function on snowflake  which has YYYY-MM-DD format by default
 	LET dat2 STRING := (SELECT CURRENT_DATE());	
 
 --For STEP 0 Table to be loaded to S3 with follow the step below
