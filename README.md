@@ -12,7 +12,7 @@
 A Retail Store requires a Data engineer to build a data pipeline (ETL) that take raw data from organization database and transforms the data to satisfy the business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions.
 
 ## 2. Business Requirements
-The data engineer is require to produce a weekly table that meets the following requirements. This table will enable Data Analyst to answer business questions
+The data engineer is required to produce a weekly table that meets the following requirements. This table will enable Data Analyst to answer business questions
 
 The table will be grouped by each week, each store, each product to calculate the following metrics: (**I translated the business requirement to mini SQL statement I will need during transformation process using Spark**)
 
