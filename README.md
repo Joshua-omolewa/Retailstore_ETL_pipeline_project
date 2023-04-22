@@ -9,7 +9,7 @@
 ![project architecture](https://github.com/Joshua-omolewa/end-2-end_data_pipeline_project/blob/main/img/Data%20Architecture.jpg)
 
 ## 1. Business Scenario
-A Retail Store requires a Data engineer to build a data pipeline (ETL) that take raw data from organization database and transforms the data to satisfy the business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions. The data model for the OLTP database is shown below <img src="https://github.com/Joshua-omolewa/Retailstore_ETL_pipeline_project/blob/main/img/Data%20Model%20for%20Database.jpg"  width="100%" height="100%">
+A Retail Store requires a Data engineer to build a data pipeline (ETL) that exrtract raw data from organization database and transforms the data to satisfy the business buisness  requirements and  provide a platform for Data Analyst to generate Visualization to answer some business questions. The data model for the OLTP database is shown below <img src="https://github.com/Joshua-omolewa/Retailstore_ETL_pipeline_project/blob/main/img/Data%20Model%20for%20Database.jpg"  width="100%" height="100%">
 
 
 
