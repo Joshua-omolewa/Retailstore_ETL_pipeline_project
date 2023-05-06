@@ -18,12 +18,12 @@ The data engineer is required to produce a weekly table that meets the following
 
 The table will be grouped by each week, each store, each product to calculate the following metrics: (**I translated the business requirement to mini SQL statement I will need during the transformation process using Spark**)
 
-* total sales quantity of a product : **Sum(sales_qty)**
-* total sales amount of a product : **Sum(sales_amt)**
+* total quantity of a product : **Sum(sales_qty)**
+* total sales amount of products : **Sum(sales_amt)**
 * average sales Price: **Sum(sales_amt)/Sum(sales_qty)**
 * stock level by then end of the week : **stock_on_hand_qty by the end of the week (only the stock level at the end day of the week)**
 * store on Order level by then end of the week: **ordered_stock_qty by the end of the week (only the ordered stock quantity at the end day of the week)**
-* total cost of the week: **Sum(cost_amt)**
+* total cost for the week: **Sum(cost_amt)**
 * the percentage of Store In-Stock: **(how many times of out_of_stock in a week) / days of a week (7 days)**
 * total Low Stock Impact: **sum (out_of+stock_flg + Low_Stock_flg)**
 * potential Low Stock Impact: **if Low_Stock_Flg =TRUE then SUM(sales_amt - stock_on_hand_amt)**
