@@ -19,7 +19,7 @@ print('args ' + str(args)) # print out the argument
 
 def parse_command_line(args):
     """
-    This function literally evaluate/converts the object srting 
+    This function literally evaluate/converts the object string 
     passed into it and return python native object type i.e dict, bool,int, string i.e Convert a command line argument to a dict
     """
     return ast.literal_eval(args) 
